@@ -1,15 +1,24 @@
 <template>
-  <div>добавление людей</div>
-  <div v-if="emptyName">Введи имя</div>
-  <div v-if="fewPers">Добавь не меньше 2х человек</div>
-  <input v-model="name" />
-  <button @click="addPerson">Добавить</button>
-  <div v-for="person in $store.state.persons" :key="person[0]">
-    <p>{{ person[1].name }}</p>
-    <button @click="deletePerson(person[0])">x</button>
+  <div class="page">
+    <div class="block">
+      <div class="text">Добавление людей</div>
+      <div class="error" v-if="emptyName">Введи имя</div>
+      <div class="error" v-if="fewPers">Добавь не меньше 2х человек</div>
+      <div class="flex">
+        <input v-model="name" />
+        <button class="button" @click="addPerson">Добавить</button>
+      </div>
+      <div v-for="person in $store.state.persons" :key="person[0]">
+        <div class="flex">
+          <span>{{ person[1].name }}</span>
+          <button class="button" @click="deletePerson(person[0])">x</button>
+        </div>
+      </div>
+      <div>
+        <button class="button" @click="checkPerson">Дальше</button>
+      </div>
+    </div>
   </div>
-  <a href="#/calculating">Дальше</a>
-  <button @click="checkPerson">Дальше</button>
 </template>
 
 <script>
@@ -25,8 +34,8 @@ export default {
     addPerson() {
       if (this.name) {
         const id = Date.now();
-        this.$store.state.persons.set(id, {
-          id: id,
+        this.$store.state.persons.set(+id, {
+          id: +id,
           name: this.name,
           debts: new Map(),
         });

@@ -1,30 +1,43 @@
 <template>
-  <div>раздел счета</div>
-  <div>{{ error }}</div>
-  <div>
-    <input v-model="name" type="text" placeholder="Название продукта" />
-    <input v-model="price" type="number" placeholder="Цена продукта" />
-    <button @click="addProduct">Добавить</button>
-  </div>
-  <div v-for="product in $store.state.products" :key="product[0]">
-    <p>{{ product[1].name }} {{ product[1].price }}</p>
-    <select @change="changePayer($event, product[0])">
-      <option value="" default>Кто оплачивал?</option>
-      <option
-        v-for="person in $store.state.persons"
-        :key="person[0]"
-        :value="person[0]"
-      >
-        {{ person[1].name }}
-      </option>
-    </select>
-    <div v-for="person in $store.state.persons" :key="person[0]">
-      <p>{{ person[1].name }}</p>
-      <input @change="togglePerson(product[0], person[0])" type="checkbox" />
+  <div class="page">
+    <div class="block">
+      <div class="text">Раздел счета</div>
+      <div class="error">{{ error }}</div>
+      <div class="flex">
+        <input v-model="name" type="text" placeholder="Название продукта" />
+        <input v-model="price" type="number" placeholder="Цена продукта" />
+        <button class="button" @click="addProduct">Добавить</button>
+      </div>
+      <div v-for="product in $store.state.products" :key="product[0]">
+        <div class="flex">
+          <span
+            >Название: {{ product[1].name }}, Цена: {{ product[1].price }}</span
+          >
+          <select @change="changePayer($event, product[0])">
+            <option value="" default>Кто оплачивал?</option>
+            <option
+              v-for="person in $store.state.persons"
+              :key="person[0]"
+              :value="person[0]"
+            >
+              {{ person[1].name }}
+            </option>
+          </select>
+          <button class="button" @click="deleteProduct(product[0])">x</button>
+        </div>
+        <div v-for="person in $store.state.persons" :key="person[0]">
+          <div class="flex">
+            <span>{{ person[1].name }}</span>
+            <input
+              @change="togglePerson(product[0], person[0])"
+              type="checkbox"
+            />
+          </div>
+        </div>
+      </div>
+      <button class="button" @click="checkValue">Дальше</button>
     </div>
-    <button @click="deleteProduct(product[0])">x</button>
   </div>
-  <button @click="checkValue">Дальше</button>
 </template>
 <script>
 export default {

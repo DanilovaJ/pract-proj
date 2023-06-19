@@ -1,0 +1,65 @@
+@import "variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+.page {
+  background: $dark-bg;
+  height: 100vh;
+  font-size: 1rem;
+  padding: 100px 0;
+}
+
+.block {
+  width: 80%;
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid $light-bg;
+  border-radius: 20px;
+  background: $medium-bg;
+}
+
+.button {
+  padding: 5px 15px;
+  border-radius: 10px;
+  border: 2px solid $dark-bg;
+  background: $light-bg;
+  color: white;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 5px 5px 5px 0;
+}
+
+.text {
+  color: $yellow;
+  font-size: 1.5rem;
+}
+
+.error {
+  color: red;
+}
+
+input {
+  background: $light-bg;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+}
+
+select {
+  border-radius: 10px;
+  padding: 5px;
+  background: $light-bg;
+}
+span {
+  margin: 0 5px 0 0;
+}
